@@ -76,3 +76,4 @@ cegeka_apache::auth::basic::ldap {"collectd":
   authzRequire => "ldap-group ou=foo,ou=bar,o=entreprises,c=ch",
 }
 
+
