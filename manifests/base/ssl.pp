@@ -13,7 +13,7 @@ class cegeka_apache::base::ssl {
     ensure => present
   }
 
-  if ($::operatingsystemmajrelease < 7) {
+  if (versioncmp($::operatingsystemmajrelease, '7') < 0) {
     cegeka_apache::namevhost { '*:443':
       ensure => present
     }

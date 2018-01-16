@@ -79,8 +79,8 @@ class cegeka_apache::base {
   cegeka_apache::listen { $cegeka_apache::params::default_port:
       ensure => present
   }
-  
-  if ($::operatingsystemmajrelease < 7) {
+
+  if (versioncmp($::operatingsystemmajrelease, '7') < 0) {
     cegeka_apache::namevhost { "*:${cegeka_apache::params::default_port}":
       ensure => present
     }
