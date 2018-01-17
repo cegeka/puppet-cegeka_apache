@@ -12,7 +12,7 @@ class cegeka_apache::svnserver {
     }
 
     default: {
-      fail "Unsupported operatingsystem ${::operatingsystem}"
+      fail("Unsupported operatingsystem ${::operatingsystem}")
     }
 
   }

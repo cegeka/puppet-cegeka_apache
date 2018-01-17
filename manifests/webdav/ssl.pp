@@ -3,6 +3,6 @@ class cegeka_apache::webdav::ssl {
 
   case $::operatingsystem {
     'Debian','Ubuntu':  { include cegeka_apache::webdav::ssl::debian}
-    default: { fail "Unsupported operatingsystem ${::operatingsystem}" }
+    default: { fail("Unsupported operatingsystem ${::operatingsystem}") }
   }
 }
