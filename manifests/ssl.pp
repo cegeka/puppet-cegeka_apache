@@ -31,8 +31,8 @@ Example usage:
 */
 class cegeka_apache::ssl inherits cegeka_apache {
   case $::operatingsystem {
-    Debian,Ubuntu:  { include cegeka_apache::ssl::debian}
-    RedHat,CentOS:  { include cegeka_apache::ssl::redhat}
+    'Debian','Ubuntu':  { include cegeka_apache::ssl::debian}
+    'RedHat','CentOS':  { include cegeka_apache::ssl::redhat}
     default: { fail "Unsupported operatingsystem ${::operatingsystem}" }
   }
 }

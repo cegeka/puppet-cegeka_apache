@@ -2,7 +2,7 @@ class cegeka_apache::security {
 
   case $::operatingsystem {
 
-    RedHat,CentOS: {
+    'RedHat','CentOS': {
       package { 'mod_security':
         ensure => present,
         alias  => 'apache-mod_security',
@@ -21,7 +21,7 @@ class cegeka_apache::security {
       }
     }
 
-    Debian,Ubuntu: {
+    'Debian','Ubuntu': {
       package { 'libapache-mod-security':
         ensure => present,
         alias  => 'apache-mod_security',

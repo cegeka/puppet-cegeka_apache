@@ -3,11 +3,11 @@ class cegeka_apache::svnserver {
 
   case $::operatingsystem {
 
-    Debian,Ubuntu:  {
+    'Debian','Ubuntu': {
       $pkglist = [ 'libapache2-svn' ]
     }
 
-    RedHat,CentOS:  {
+    'RedHat','CentOS': {
       $pkglist = [ 'mod_dav_svn' ]
     }
 

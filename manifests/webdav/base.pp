@@ -2,7 +2,7 @@ class cegeka_apache::webdav::base {
 
   case $::operatingsystem {
 
-    Debian,Ubuntu:  {
+    'Debian','Ubuntu': {
 
       package {'libapache2-mod-encoding':
         ensure => present,

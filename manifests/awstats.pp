@@ -17,7 +17,7 @@ class cegeka_apache::awstats {
 
   case $::operatingsystem {
 
-    Debian,Ubuntu: {
+    'Debian','Ubuntu': {
       cron { 'update all awstats virtual hosts':
         command => '/usr/share/doc/awstats/examples/awstats_updateall.pl -awstatsprog=/usr/lib/cgi-bin/awstats.pl -confdir=/etc/awstats now > /dev/null',
         user    => 'root',
@@ -30,7 +30,7 @@ class cegeka_apache::awstats {
       }
     }
 
-    RedHat,CentOS: {
+    'RedHat','CentOS': {
 
       # awstats RPM installs its own cron in /etc/cron.hourly/awstats
 
