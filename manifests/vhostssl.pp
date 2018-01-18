@@ -10,7 +10,7 @@ for backward compatibility reasons.
 
 
 */
-define cegeka_apache::vhost-ssl (
+define cegeka_apache::vhostssl (
   $ensure=present,
   $config_file='',
   $config_content=false,
