@@ -1,4 +1,4 @@
-define cegeka_apache::webdav::instance ($vhost, $ensure=present, $directory=false,$mode=2755) {
+define cegeka_apache::webdav::instance ($vhost, $ensure=present, $directory=false,$mode='2755') {
 
   include cegeka_apache::params
 

@@ -10,7 +10,7 @@ define cegeka_apache::vhost (
   $user='',
   $admin='',
   $group='',
-  $mode=2570,
+  $mode='2570',
   $aliases=[],
   $ports=['*:80'],
   $accesslog_format='combined',
