@@ -16,7 +16,7 @@ class cegeka_apache::redhat {
   }
 
   $httpd_mpm = $cegeka_apache::apache_mpm_type ? {
-     undef     => 'httpd', # default MPM
+    undef     => 'httpd', # default MPM
     'pre-fork' => 'httpd',
     'prefork'  => 'httpd',
     default    => "httpd.${cegeka_apache::apache_mpm_type}",
