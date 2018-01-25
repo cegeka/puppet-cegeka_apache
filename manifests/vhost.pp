@@ -51,8 +51,8 @@ define cegeka_apache::vhost (
         default   => "/usr/sbin/a2ensite ${name}",
       }
       $configseltype = $::operatingsystem ? {
-        RedHat  => 'httpd_config_t',
-        CentOS  => 'httpd_config_t',
+        'RedHat'  => 'httpd_config_t',
+        'CentOS'  => 'httpd_config_t',
         default => undef,
       }
       file { "${cegeka_apache::params::conf}/sites-available/${name}":
@@ -66,8 +66,8 @@ define cegeka_apache::vhost (
       }
 
       $sysseltype = $::operatingsystem ? {
-        RedHat  => 'httpd_sys_content_t',
-        CentOS  => 'httpd_sys_content_t',
+        'RedHat'  => 'httpd_sys_content_t',
+        'CentOS'  => 'httpd_sys_content_t',
         default => undef,
       }
       file { "${cegeka_apache::params::root}/${name}":
@@ -126,8 +126,8 @@ define cegeka_apache::vhost (
       }
 
       $scriptseltype = $::operatingsystem ? {
-        RedHat  => 'httpd_sys_script_exec_t',
-        CentOS  => 'httpd_sys_script_exec_t',
+        'RedHat'  => 'httpd_sys_script_exec_t',
+        'CentOS'  => 'httpd_sys_script_exec_t',
         default => undef,
       }
 
@@ -165,8 +165,8 @@ define cegeka_apache::vhost (
 
       # Log files
       $logseltype = $::operatingsystem ? {
-        RedHat  => 'httpd_log_t',
-        CentOS  => 'httpd_log_t',
+        'RedHat'  => 'httpd_log_t',
+        'CentOS'  => 'httpd_log_t',
         default => undef,
       }
       file {"${cegeka_apache::params::root}/${name}/logs":
@@ -257,8 +257,8 @@ define cegeka_apache::vhost (
 
   disabled: {
       $disablecmd = $::operatingsystem ? {
-          RedHat  => "/usr/local/sbin/a2dissite ${name}",
-          CentOS  => "/usr/local/sbin/a2dissite ${name}",
+          'RedHat'  => "/usr/local/sbin/a2dissite ${name}",
+          'CentOS'  => "/usr/local/sbin/a2dissite ${name}",
           default => "/usr/sbin/a2dissite ${name}",
       }
       exec { "disable vhost ${name}":
