@@ -18,8 +18,8 @@ define cegeka_apache::module ($ensure='present') {
   }
 
   $enablecmd = $::operatingsystem ? {
-    RedHat  => "/usr/local/sbin/a2enmod ${name}",
-    CentOS  => "/usr/local/sbin/a2enmod ${name}",
+    'RedHat'  => "/usr/local/sbin/a2enmod ${name}",
+    'CentOS'  => "/usr/local/sbin/a2enmod ${name}",
     default => "/usr/sbin/a2enmod ${name}"
   }
 
