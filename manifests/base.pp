@@ -87,9 +87,9 @@ class cegeka_apache::base {
   }
 
   $real_apache_modules = $::operatingsystemrelease ? {
-    /5.*/ => ['alias', 'auth_basic', 'authn_file', 'authz_default', 'authz_groupfile', 'authz_host', 'authz_user', 'autoindex', 'dir', 'env', 'mime', 'negotiation', 'rewrite', 'setenvif', 'status', 'cgi'],
-    /6.*/ => ['alias', 'auth_basic', 'authn_file', 'authz_default', 'authz_groupfile', 'authz_host', 'authz_user', 'autoindex', 'dir', 'env', 'mime', 'negotiation', 'rewrite', 'setenvif', 'status', 'cgi'],
-    /7.*/ => ['alias', 'auth_basic', 'authn_file', 'authz_core', 'authz_groupfile', 'authz_host', 'authz_user', 'autoindex', 'dir', 'env', 'mime', 'negotiation', 'rewrite', 'setenvif', 'status', 'mpm_prefork', 'unixd', 'access_compat', 'socache_shmcb', 'systemd']
+    /^5\..*/ => ['alias', 'auth_basic', 'authn_file', 'authz_default', 'authz_groupfile', 'authz_host', 'authz_user', 'autoindex', 'dir', 'env', 'mime', 'negotiation', 'rewrite', 'setenvif', 'status', 'cgi'],
+    /^6\..*/ => ['alias', 'auth_basic', 'authn_file', 'authz_default', 'authz_groupfile', 'authz_host', 'authz_user', 'autoindex', 'dir', 'env', 'mime', 'negotiation', 'rewrite', 'setenvif', 'status', 'cgi'],
+    /^7\..*/ => ['alias', 'auth_basic', 'authn_file', 'authz_core', 'authz_groupfile', 'authz_host', 'authz_user', 'autoindex', 'dir', 'env', 'mime', 'negotiation', 'rewrite', 'setenvif', 'status', 'mpm_prefork', 'unixd', 'access_compat', 'socache_shmcb', 'systemd']
   }
   cegeka_apache::module { $real_apache_modules :
     ensure => present,
