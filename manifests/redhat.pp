@@ -24,6 +24,8 @@ class cegeka_apache::redhat {
 
   augeas { "select httpd mpm ${httpd_mpm}":
     changes => "set /files/etc/sysconfig/httpd/HTTPD /usr/sbin/${httpd_mpm}",
+    incl    => "/etc/sysconfig/httpd",
+    lens    => 'Shellvars.lns',
     require => Package['cegeka_apache'],
     notify  => Service['cegeka_apache'],
   }

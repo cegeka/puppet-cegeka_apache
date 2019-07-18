@@ -61,7 +61,7 @@ define cegeka_apache::vhost (
         group   => root,
         mode    => '0644',
         seltype => $configseltype,
-        require => Package[$cegeka_apache::params::pkg],
+        require => Package['cegeka_apache'],
         notify  => Exec['cegeka_apache-graceful'],
       }
 

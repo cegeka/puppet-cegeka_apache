@@ -105,7 +105,7 @@ define cegeka_apache::vhost::ssl (
   $docroot=false,
   $cgibin=false,
   $user='',
-  $admin=$admin,
+  $admin='',
   $group='',
   $mode='2570',
   $aliases=[],

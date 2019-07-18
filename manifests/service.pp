@@ -10,6 +10,6 @@ class cegeka_apache::service {
     name       => $cegeka_apache::params::pkg,
     enable     => true,
     hasrestart => true,
-    require    => Package[$cegeka_apache::params::pkg],
+    require    => Package['cegeka_apache'],
   }
 }
