@@ -15,11 +15,11 @@ class cegeka_apache::redhat {
     source => 'puppet:///modules/cegeka_apache/usr/local/sbin/a2X.redhat',
   }
 
-  $httpd_mpm = $cegeka_apache::apache_mpm_type ? {
+  $httpd_mpm = $cegeka_apache::params::apache_mpm_type ? {
     undef     => 'httpd', # default MPM
     'pre-fork' => 'httpd',
     'prefork'  => 'httpd',
-    default    => "httpd.${cegeka_apache::apache_mpm_type}",
+    default    => "httpd.${cegeka_apache::params::apache_mpm_type}",
   }
 
   augeas { "select httpd mpm ${httpd_mpm}":

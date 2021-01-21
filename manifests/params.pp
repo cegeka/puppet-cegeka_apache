@@ -94,4 +94,7 @@ class cegeka_apache::params {
   }
 
   $apache_disable_default_vhost = false
+
+  $apache_mpm_type = 'prefork'
+
 }
