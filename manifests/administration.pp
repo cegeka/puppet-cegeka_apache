@@ -2,7 +2,7 @@ class cegeka_apache::administration {
 
   include cegeka_apache::params
 
-  $distro_specific_apache_sudo = $::operatingsystem ? {
+  $distro_specific_apache_sudo = $facts['os']['name'] ? {
     /RedHat|CentOS/ => "/usr/sbin/apachectl, /sbin/service ${cegeka_apache::params::pkg}",
     /Debian|Ubuntu/ => '/usr/sbin/apache2ctl',
   }

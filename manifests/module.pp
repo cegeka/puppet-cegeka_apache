@@ -2,7 +2,7 @@ define cegeka_apache::module ($ensure='present') {
 
   include cegeka_apache::params
 
-  $a2enmod_deps = $::operatingsystem ? {
+  $a2enmod_deps = $facts['os']['name'] ? {
     /RedHat|CentOS/ => [
       Package['cegeka_apache'],
       File['/etc/httpd/mods-available'],
@@ -13,17 +13,17 @@ define cegeka_apache::module ($ensure='present') {
     /Debian|Ubuntu/ => Package['cegeka_apache'],
   }
 
-  if $::selinux == true and $ensure == true {
+  if $facts['os']['selinux']['enabled'] == true and $ensure == true {
     cegeka_apache::redhat::selinux {$name: }
   }
 
-  $enablecmd = $::operatingsystem ? {
+  $enablecmd = $facts['os']['name'] ? {
     'RedHat'  => "/usr/local/sbin/a2enmod ${name}",
     'CentOS'  => "/usr/local/sbin/a2enmod ${name}",
     default => "/usr/sbin/a2enmod ${name}"
   }
 
-  $disablecmd = $::operatingsystem ? {
+  $disablecmd = $facts['os']['name'] ? {
     /RedHat|CentOS/ => "/usr/local/sbin/a2dismod ${name}",
     /Debian|Ubuntu/ => "/usr/sbin/a2dismod ${name}",
   }

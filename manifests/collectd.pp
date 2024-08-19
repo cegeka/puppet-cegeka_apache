@@ -19,7 +19,7 @@ Usage:
 */
 class cegeka_apache::collectd {
 
-  if ($::operatingsystem == 'RedHat' or $::operatingsystem == 'CentOS') and $::lsbmajdistrelease > '4' {
+  if ($facts['os']['name'] == 'RedHat' or $facts['os']['name'] == 'CentOS') and $facts['os']['distro']['release']['major'] > '4' {
 
     package { 'collectd-apache':
       ensure => present,

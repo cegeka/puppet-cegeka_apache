@@ -31,7 +31,7 @@ class cegeka_apache::debian {
   }
 
   file { "${cegeka_apache::params::conf}/conf.d/servername.conf":
-    content => "ServerName ${::fqdn}\n",
+    content => "ServerName ${facts['networking']['fqdn']}\n",
     notify  => Service['cegeka_apache'],
     require => Package['cegeka_apache'],
   }

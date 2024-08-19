@@ -1,6 +1,6 @@
 class cegeka_apache::security {
 
-  case $::operatingsystem {
+  case $facts['os']['name'] {
 
     'RedHat','CentOS': {
       package { 'mod_security':
@@ -29,7 +29,7 @@ class cegeka_apache::security {
     }
 
     default: {
-      fail ("Operating system not supported: '${::operatingsystem}'")
+      fail ("Operating system not supported: '${facts['os']['name']}'")
     }
   }
 

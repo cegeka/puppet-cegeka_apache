@@ -45,12 +45,12 @@ define cegeka_apache::vhost (
 
   case $ensure {
     present: {
-      $enablecmd = $::operatingsystem ? {
+      $enablecmd = $facts['os']['name'] ? {
         'RedHat'  => "/usr/local/sbin/a2ensite ${name}",
         'CentOS'  => "/usr/local/sbin/a2ensite ${name}",
         default   => "/usr/sbin/a2ensite ${name}",
       }
-      $configseltype = $::operatingsystem ? {
+      $configseltype = $facts['os']['name'] ? {
         'RedHat'  => 'httpd_config_t',
         'CentOS'  => 'httpd_config_t',
         default => undef,
@@ -65,7 +65,7 @@ define cegeka_apache::vhost (
         notify  => Exec['cegeka_apache-graceful'],
       }
 
-      $sysseltype = $::operatingsystem ? {
+      $sysseltype = $facts['os']['name'] ? {
         'RedHat'  => 'httpd_sys_content_t',
         'CentOS'  => 'httpd_sys_content_t',
         default => undef,
@@ -125,7 +125,7 @@ define cegeka_apache::vhost (
         default                                     => undef,
       }
 
-      $scriptseltype = $::operatingsystem ? {
+      $scriptseltype = $facts['os']['name'] ? {
         'RedHat'  => 'httpd_sys_script_exec_t',
         'CentOS'  => 'httpd_sys_script_exec_t',
         default => undef,
@@ -164,7 +164,7 @@ define cegeka_apache::vhost (
       }
 
       # Log files
-      $logseltype = $::operatingsystem ? {
+      $logseltype = $facts['os']['name'] ? {
         'RedHat'  => 'httpd_log_t',
         'CentOS'  => 'httpd_log_t',
         default => undef,
@@ -256,7 +256,7 @@ define cegeka_apache::vhost (
   }
 
   disabled: {
-      $disablecmd = $::operatingsystem ? {
+      $disablecmd = $facts['os']['name'] ? {
           'RedHat'  => "/usr/local/sbin/a2dissite ${name}",
           'CentOS'  => "/usr/local/sbin/a2dissite ${name}",
           default => "/usr/sbin/a2dissite ${name}",

@@ -1,7 +1,7 @@
 class cegeka_apache::webdav::ssl::debian {
   include cegeka_apache::webdav::base
 
-  case $::lsbdistcodename {
+  case $facts['os']['distro']['codename'] {
     'etch': {
       # cf: http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=420101
       file {'/var/lock/apache2':

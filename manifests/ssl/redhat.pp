@@ -25,7 +25,7 @@ class cegeka_apache::ssl::redhat {
     before  => Exec['cegeka_apache-graceful'],
   }
 
-  case $::operatingsystemrelease{
+  case $facts['os']['release']['full']{
     /5.*|6.*/: {
       file {'/etc/httpd/mods-available/ssl.load':
         ensure  => present,

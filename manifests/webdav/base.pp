@@ -1,6 +1,6 @@
 class cegeka_apache::webdav::base {
 
-  case $::operatingsystem {
+  case $facts['os']['name'] {
 
     'Debian','Ubuntu': {
 

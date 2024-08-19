@@ -1,7 +1,7 @@
 class cegeka_apache::svnserver {
   include cegeka_apache::ssl
 
-  case $::operatingsystem {
+  case $facts['os']['name'] {
 
     'Debian','Ubuntu': {
       $pkglist = [ 'libapache2-svn' ]
@@ -12,7 +12,7 @@ class cegeka_apache::svnserver {
     }
 
     default: {
-      fail("Unsupported operatingsystem ${::operatingsystem}")
+      fail("Unsupported operatingsystem ${facts['os']['name']}")
     }
 
   }

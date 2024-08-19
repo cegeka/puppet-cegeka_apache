@@ -168,7 +168,7 @@ define cegeka_apache::vhost::ssl (
   if $cacert != false {
     $cacertfile = "${cegeka_apache::params::root}/${name}/ssl/cacert.crt"
   } else {
-    $cacertfile = $::operatingsystem ? {
+    $cacertfile = $facts['os']['name'] ? {
       /RedHat|CentOS/ => '/etc/pki/tls/certs/ca-bundle.crt',
       Debian          => '/etc/ssl/certs/ca-certificates.crt',
     }

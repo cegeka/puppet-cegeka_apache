@@ -43,7 +43,7 @@ class cegeka_apache::redhat {
     require => Package['cegeka_apache'],
   }
 
-  $real_httpd_source = $::operatingsystemrelease ? {
+  $real_httpd_source = $facts['os']['release']['full'] ? {
     /5.*/ => 'cegeka_apache/httpd-2.2.conf.erb',
     /6.*/ => 'cegeka_apache/httpd-2.2.conf.erb',
     /7.*/ => 'cegeka_apache/httpd-2.4.conf.erb'
@@ -60,7 +60,7 @@ class cegeka_apache::redhat {
   # the following command was used to generate the content of the directory:
   # egrep '(^|#)LoadModule' /etc/httpd/conf/httpd.conf | sed -r 's|#?(.+ (.+)_module .+)|echo "\1" > mods-available/redhat5/\2.load|' | sh
   # ssl.load was then changed to a template (see apache-ssl-redhat.pp)
-  $real_module_source = $::operatingsystemrelease ? {
+  $real_module_source = $facts['os']['release']['full'] ? {
     /5.*/ => 'puppet:///modules/cegeka_apache/etc/httpd/mods-available/redhat5/',
     /6.*/ => 'puppet:///modules/cegeka_apache/etc/httpd/mods-available/redhat6/',
     /7.*/ => 'puppet:///modules/cegeka_apache/etc/httpd/mods-available/redhat7/',

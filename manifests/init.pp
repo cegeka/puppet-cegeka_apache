@@ -20,9 +20,9 @@ Example usage:
 
 */
 class cegeka_apache($apache_vhost_root='',$ensure_status='',$default_port='80') {
-  case $::operatingsystem {
+  case $facts['os']['name'] {
     'Debian','Ubuntu':  { include cegeka_apache::debian}
     'RedHat','CentOS':  { include cegeka_apache::redhat}
-    default: { fail("Unsupported operatingsystem ${::operatingsystem}") }
+    default: { fail("Unsupported operatingsystem ${facts['os']['name']}") }
   }
 }

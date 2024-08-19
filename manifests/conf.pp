@@ -37,7 +37,7 @@ define cegeka_apache::conf($configuration, $path, $ensure=present, $filename='',
     fail('empty "configuration" parameter')
   }
 
-  $confseltype = $::operatingsystem ? {
+  $confseltype = $facts['os']['name'] ? {
     'RedHat' => 'httpd_config_t',
     'CentOS' => 'httpd_config_t',
     default  => undef,

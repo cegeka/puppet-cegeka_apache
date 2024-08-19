@@ -11,12 +11,12 @@ define cegeka_apache::aw-stats($ensure=present, $aliases=[]) {
     require => [Package['cegeka_apache'], Class['cegeka_apache::awstats']],
   }
 
-  $awstatsconf = $::operatingsystem ? {
+  $awstatsconf = $facts['os']['name'] ? {
     /RedHat|CentOS/ => 'puppet:///modules/cegeka_apache/awstats.rh.conf',
     /Debian|Ubuntu/ => 'puppet:///modules/cegeka_apache/awstats.deb.conf',
   }
 
-  $confseltype = $::operatingsystem ? {
+  $confseltype = $facts['os']['name'] ? {
     'RedHat' => 'httpd_config_t',
     'CentOS' => 'httpd_config_t',
     default  => undef,

@@ -34,7 +34,7 @@ define cegeka_apache::auth::basic::ldap (
     $_authname = $name
   }
 
-  $confseltype = $::operatingsystem ? {
+  $confseltype = $facts['os']['name'] ? {
     'RedHat' => 'httpd_config_t',
     'CentOS' => 'httpd_config_t',
     default  => undef,

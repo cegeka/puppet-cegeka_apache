@@ -10,7 +10,7 @@
 #   include cegeka_apache::dev
 #
 class cegeka_apache::dev {
-  $pkgname  = $::operatingsystem ? {
+  $pkgname  = $facts['os']['name'] ? {
     /RedHat|CentOS/ => 'httpd-devel',
     /Debian|Ubuntu/ => 'apache2-threaded-dev',
   }

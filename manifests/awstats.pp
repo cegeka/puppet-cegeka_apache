@@ -15,7 +15,7 @@ class cegeka_apache::awstats {
     require => Package['awstats'],
   }
 
-  case $::operatingsystem {
+  case $facts['os']['name'] {
 
     'Debian','Ubuntu': {
       cron { 'update all awstats virtual hosts':
@@ -54,7 +54,7 @@ class cegeka_apache::awstats {
       }
     }
 
-    default: { fail("Unsupported operatingsystem ${::operatingsystem}") }
+    default: { fail("Unsupported operatingsystem ${facts['os']['name']}") }
   }
 
 }

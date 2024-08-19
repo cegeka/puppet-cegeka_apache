@@ -80,13 +80,13 @@ class cegeka_apache::base {
       ensure => present
   }
 
-  if (versioncmp($::operatingsystemmajrelease, '7') < 0) {
+  if (versioncmp($facts['os']['release']['major'], '7') < 0) {
     cegeka_apache::namevhost { "*:${cegeka_apache::params::default_port}":
       ensure => present
     }
   }
 
-  case $::operatingsystemmajrelease {
+  case $facts['os']['release']['major'] {
     '5': {
       $real_apache_modules = ['alias', 'auth_basic', 'authn_file', 'authz_default', 'authz_groupfile', 'authz_host', 'authz_user', 'autoindex', 'dir', 'env', 'mime', 'negotiation', 'rewrite', 'setenvif', 'status', 'cgi']
     }
@@ -103,11 +103,11 @@ class cegeka_apache::base {
     notify => Exec['cegeka_apache-graceful'],
   }
 
-  $statusfile_path = $::operatingsystem ? {
+  $statusfile_path = $facts['os']['name'] ? {
     /RedHat|CentOS/      => "${cegeka_apache::params::conf}/conf.d/status.conf",
     /Ubuntu|Debian/      => "${cegeka_apache::params::conf}/mods-available/status.conf",
   }
-  $statusfile_source = $::operatingsystem ? {
+  $statusfile_source = $facts['os']['name'] ? {
     /RedHat|CentOS/ => "puppet:///modules/cegeka_apache/${cegeka_apache::params::conf}/conf/status.conf",
     /Debian|Ubuntu/ => "puppet:///modules/cegeka_apache/${cegeka_apache::params::conf}/mods-available/status.conf",
   }

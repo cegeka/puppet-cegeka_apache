@@ -20,7 +20,7 @@ define cegeka_apache::webdav::instance ($vhost, $ensure=present, $directory=fals
   }
 
   # configuration
-  $sysseltype = $::operatingsystem ? {
+  $sysseltype = $facts['os']['name'] ? {
     'RedHat' => 'httpd_config_t',
     'CentOS' => 'httpd_config_t',
     default  => undef,
