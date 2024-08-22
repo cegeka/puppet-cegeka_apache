@@ -36,16 +36,16 @@ define cegeka_apache::auth::basic::file::webdav::user (
     $_users = $rw_users
   }
 
-  $confseltype = $::operatingsystem ? {
+  $confseltype = $facts['os']['name'] ? {
     'RedHat' => 'httpd_config_t',
     'CentOS' => 'httpd_config_t',
     default  => undef,
   }
   file { "${cegeka_apache::params::root}/${vhost}/conf/auth-basic-file-webdav-${fname}.conf":
-    ensure     => $ensure,
-    content    => template('cegeka_apache/auth-basic-file-webdav-user.erb'),
-    seltype    => $confseltype,
-    notify     => Exec['cegeka_apache-graceful'],
+    ensure  => $ensure,
+    content => template('cegeka_apache/auth-basic-file-webdav-user.erb'),
+    seltype => $confseltype,
+    notify  => Exec['cegeka_apache-graceful'],
   }
 
 }
